@@ -9,8 +9,7 @@ public class ParseCombiner extends Reducer <Text, Text, Text, Text> {
 	
 	private static String PREFIX = "&gt;";
 	private Text result = new Text();
-	private Text token = new Text();
-//	private Text self = new Text();
+	private Text token = new Text(PREFIX);
 	
 	public void reduce(Text key, Iterable<Text> values, Context context) throws IOException, InterruptedException {		
 		StringBuffer parent = new StringBuffer();
@@ -21,7 +20,6 @@ public class ParseCombiner extends Reducer <Text, Text, Text, Text> {
     		// direct pass token 
     		if (!isToken && isToken(val)) {
     			isToken = true;
-    			token.set(val);
     		}
     		// combine parent
     		else {
@@ -32,7 +30,6 @@ public class ParseCombiner extends Reducer <Text, Text, Text, Text> {
     	
     	//construct: ("&gt;"+parent) * N 
     	result.set(parent.toString());
-//    	self.set(key);
     	
     	if (isParent)
     		context.write(key, result);

@@ -19,18 +19,21 @@ public class RankMapper extends Mapper<Text, Text, Text, Node> {
 		String[] split_line = value.toString().split(PREFIX);
 		
 		double prePR = Double.parseDouble(split_line[0]);
-		double propagatePR = prePR / (split_line.length - 1);
 		
-		msg = new Node(propagatePR, new Text(), false);
-		
-		// propagate PR info to neighbors
-		for (int i = 1; i < split_line.length; i++) {
-			if (neighbor.size() <= i-1)
-				neighbor.add(new Text(split_line[i]));
-			else
-				neighbor.set(i-1, new Text(split_line[i]));
+		if (split_line.length > 1) {
+			double propagatePR = prePR / (split_line.length - 1);
 			
-			context.write(neighbor.get(i-1), msg);
+			msg = new Node(propagatePR, new Text(), false);
+			
+			// propagate PR info to neighbors
+			for (int i = 1; i < split_line.length; i++) {
+				if (neighbor.size() <= i-1)
+					neighbor.add(new Text(split_line[i]));
+				else
+					neighbor.set(i-1, new Text(split_line[i]));
+				
+				context.write(neighbor.get(i-1), msg);
+			}
 		}
 		
 		// pass self info

@@ -10,7 +10,6 @@ public class ParseReducer extends Reducer<Text, Text, Text, Text> {
 	
 	private static String PREFIX = "&gt;";
 	private Text result = new Text();
-//	private Text self = new Text();
 	
     public void reduce(Text key, Iterable<Text> values, Context context) throws IOException, InterruptedException {
     	StringBuffer parent = new StringBuffer();
@@ -28,7 +27,6 @@ public class ParseReducer extends Reducer<Text, Text, Text, Text> {
     	
     	//construct: ("&gt;"+parent) *N 
     	result.set(parent.toString());
-//    	self.set(key);
     	
     	if (isExist == true)
     		context.write(key, result);

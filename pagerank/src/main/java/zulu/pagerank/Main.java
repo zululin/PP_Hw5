@@ -16,6 +16,7 @@ import zulu.pagerank.sort.Sort;
 public class Main {
 	public static void main(String[] args) throws Exception {
 		long N = 0;
+		long dangling = 0;
 		long error = 0;
 		long round = 0;
 		int numReducer = Integer.parseInt(args[8]);
@@ -35,13 +36,13 @@ public class Main {
         while (true) {
         	//Job 3: Collect dangling node PR
             Collect job3 = new Collect();
-            job3.collectDanglingNodePR(args, numReducer);
+            dangling = job3.collectDanglingNodePR(args, numReducer);
             
             //Job 4: Do page rank
             deleteFile(args[4]);
             
     		Rank job4 = new Rank();
-            job4.rank(args, N, numReducer);
+            job4.rank(args, N, numReducer, dangling);
 		
             //Job 5: Judge converge
             deleteFile(args[3]);
@@ -56,7 +57,7 @@ public class Main {
         	
         	if (error == -1)
         		break;
-        	if (args.length == 9 && round == Integer.parseInt(args[7]))
+        	if (round == Integer.parseInt(args[7]))
         		break;
         }
         

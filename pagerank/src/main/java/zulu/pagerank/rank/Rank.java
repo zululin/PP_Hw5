@@ -11,12 +11,13 @@ import org.apache.hadoop.mapreduce.lib.output.FileOutputFormat;
 import zulu.pagerank.Node;
 
 public class Rank {
-	public void rank(String[] args, long N, int numReducer) throws Exception {
+	public void rank(String[] args, long N, int numReducer, long dangling) throws Exception {
 		
 		System.out.println("\n\n============ Do ranking now ============\n");
 		
 		Configuration conf = new Configuration();
 		conf.setLong("#N", N);
+		conf.setLong("#D", dangling);
 
 		Job job = Job.getInstance(conf, "Rank");
 		job.setJarByClass(Rank.class);
@@ -25,6 +26,7 @@ public class Rank {
 
 		// set the class of each stage in mapreduce
 		job.setMapperClass(RankMapper.class);
+		job.setCombinerClass(RankCombiner.class);
 		job.setReducerClass(RankReducer.class);
 
 		// set the output class of Mapper and Reducer

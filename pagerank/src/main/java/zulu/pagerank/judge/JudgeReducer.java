@@ -16,14 +16,8 @@ public class JudgeReducer extends Reducer<Text, DoubleWritable, Text, Text> {
 	public void reduce(Text key, Iterable<DoubleWritable> values, Context context) throws IOException, InterruptedException {
 		double error = 0;
 		
-		if (!key.toString().equals(ERROR))
-			System.out.println("Something wrong!!!!");
-		
-		
 		for (DoubleWritable val: values) 
 			error += val.get();
-		
-		System.out.println("Error: "+error);
 		
 		// done!
 		if (error < 0.001)

@@ -12,7 +12,7 @@ import org.apache.hadoop.mapreduce.lib.input.KeyValueTextInputFormat;
 public class Build {
 	public void buildGraph(String[] args, long N, int numReducer) throws Exception {
 		
-		System.out.println("\n\n============ Do pruning now ============\n");
+		System.out.println("\n\n============ Do building graph now ============\n");
 		
 		Configuration conf = new Configuration();
 		conf.setLong("#N", N);

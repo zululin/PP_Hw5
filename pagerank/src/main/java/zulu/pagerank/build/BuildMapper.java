@@ -9,15 +9,11 @@ import org.apache.hadoop.mapreduce.Mapper;
 public class BuildMapper extends Mapper<Text, Text, Text, Text> {
 	
 	private static String PREFIX = "&gt;";
-	private static String ORACLE = "&gt;oracle";
-	private Text oracleNode = new Text(ORACLE);
 	private Text token = new Text(PREFIX);
-//	private Text self = new Text();
 	private ArrayList<Text> parent = new ArrayList<Text>();
 	
 	public void map(Text key, Text value, Context context) throws IOException, InterruptedException {
 		
-//		self.set(key);
 		String[] split_line = value.toString().split(PREFIX);
 		
 		// send ack back to parent
@@ -32,8 +28,5 @@ public class BuildMapper extends Mapper<Text, Text, Text, Text> {
 		
 		// send self for dangling node
 		context.write(key, token);
-		
-		// (oracleNode, self) for constructing whole list
-		context.write(oracleNode, key);
 	}
 }

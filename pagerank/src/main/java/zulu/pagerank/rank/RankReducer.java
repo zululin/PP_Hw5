@@ -19,6 +19,7 @@ public class RankReducer extends Reducer<Text, Node, Text, Text> {
 		
 		// get N from configuration
 		long N = context.getConfiguration().getLong("#N", 0);
+		long D = context.getConfiguration().getLong("#D", 0);
 		
 		if (N == 0) {
 			try {
@@ -43,10 +44,7 @@ public class RankReducer extends Reducer<Text, Node, Text, Text> {
 				neighborPR += val.getPR();
 		}
 		
-		newPR = (1-alpha)*(1.0/N) + alpha*neighborPR;
-		
-		if (selfInfo == null)
-			System.out.println("!??????");
+		newPR = (1-alpha)*(1.0/N) + alpha*neighborPR + alpha*(Double.longBitsToDouble(D)/N);
 		
 		error = Math.abs(selfInfo.getPR() - newPR);
 		

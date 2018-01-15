@@ -11,7 +11,7 @@ import org.apache.hadoop.mapreduce.lib.output.FileOutputFormat;
 import zulu.pagerank.Node;
 
 public class Collect {
-	public void collectDanglingNodePR(String[] args, int numReducer) throws Exception {
+	public long collectDanglingNodePR(String[] args, int numReducer) throws Exception {
 		
 		System.out.println("\n\n============ Do collecting dangling now ============\n");
 		
@@ -24,7 +24,6 @@ public class Collect {
 
 		// set the class of each stage in mapreduce
 		job.setMapperClass(CollectMapper.class);
-//		job.setCombinerClass(CollectCombiner.class);
 		job.setReducerClass(CollectReducer.class);
 
 		// set the output class of Mapper and Reducer
@@ -41,5 +40,8 @@ public class Collect {
 		FileOutputFormat.setOutputPath(job, new Path(args[3]));
 
 		job.waitForCompletion(true);
+		
+		System.out.println("!!! " + job.getCounters().findCounter("zulu.pagerank.collect.CollectReducer$COUNTERS", "DANGLING").getValue());
+		return job.getCounters().findCounter("zulu.pagerank.collect.CollectReducer$COUNTERS", "DANGLING").getValue();
 	}
 }
