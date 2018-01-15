@@ -1,4 +1,4 @@
-package zulu.pagerank.prune;
+package zulu.pagerank.build;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -6,10 +6,10 @@ import java.util.ArrayList;
 import org.apache.hadoop.io.Text;
 import org.apache.hadoop.mapreduce.Mapper;
 
-public class PruneMapper extends Mapper<Text, Text, Text, Text> {
+public class BuildMapper extends Mapper<Text, Text, Text, Text> {
 	
-	private static String PREFIX = "&amp;";
-	private static String ORACLE = "&amp;oracle";
+	private static String PREFIX = "&gt;";
+	private static String ORACLE = "&gt;oracle";
 	private Text oracleNode = new Text(ORACLE);
 	private Text token = new Text(PREFIX);
 //	private Text self = new Text();

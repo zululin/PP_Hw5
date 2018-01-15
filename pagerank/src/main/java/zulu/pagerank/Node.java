@@ -9,7 +9,7 @@ import org.apache.hadoop.io.Text;
 import org.apache.hadoop.io.WritableComparable;
 
 public class Node implements WritableComparable<Object> {
-	private static String PREFIX = "&amp;";
+	private static String PREFIX = "&gt;";
 	private double PR;
 	private boolean isNode;
 	private Text links;

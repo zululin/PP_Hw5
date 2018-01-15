@@ -8,8 +8,8 @@ import org.apache.hadoop.mapreduce.Mapper;
 
 
 public class JudgeMapper extends Mapper<Text, Text, Text, DoubleWritable> {
-	private static String PREFIX = "&amp;";
-	private static String ERROR = "&amp;error";
+	private static String PREFIX = "&gt;";
+	private static String ERROR = "&gt;error";
 	
 	private DoubleWritable result = new DoubleWritable();
 	

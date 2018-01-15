@@ -1,13 +1,13 @@
-package zulu.pagerank.prune;
+package zulu.pagerank.build;
 
 import java.io.IOException;
 
 import org.apache.hadoop.io.Text;
 import org.apache.hadoop.mapreduce.Reducer;
 
-public class PruneReducer extends Reducer<Text, Text, Text, Text> {
+public class BuildReducer extends Reducer<Text, Text, Text, Text> {
 	
-	private static String PREFIX = "&amp;";
+	private static String PREFIX = "&gt;";
 	private Text result = new Text();
 	
 	public void reduce(Text key, Iterable<Text> values, Context context) throws IOException, InterruptedException {
@@ -38,6 +38,6 @@ public class PruneReducer extends Reducer<Text, Text, Text, Text> {
 	
     public boolean isToken(Text input) {
     	String tmp = input.toString();
-    	return tmp.length() == 5 && tmp.substring(0, 5).equals(PREFIX);
+    	return tmp.length() == 4 && tmp.substring(0, 4).equals(PREFIX);
     }
 }

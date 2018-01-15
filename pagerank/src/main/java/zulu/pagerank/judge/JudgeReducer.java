@@ -7,7 +7,7 @@ import org.apache.hadoop.io.Text;
 import org.apache.hadoop.mapreduce.Reducer;
 
 public class JudgeReducer extends Reducer<Text, DoubleWritable, Text, Text> {
-	private static String ERROR = "&amp;error";
+	private static String ERROR = "&gt;error";
 	
 	public enum COUNTERS {
 		ERROR

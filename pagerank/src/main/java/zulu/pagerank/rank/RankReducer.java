@@ -8,8 +8,8 @@ import org.apache.hadoop.mapreduce.Reducer;
 import zulu.pagerank.Node;
 
 public class RankReducer extends Reducer<Text, Node, Text, Text> {
-	private static String ERROR = "&amp;error";
-	private static String ORACLE = "&amp;oracle";
+	private static String ERROR = "&gt;error";
+	private static String ORACLE = "&gt;oracle";
 	private static double alpha = 0.85;
 	private Text result = new Text();
 	private Text errKey = new Text(ERROR);

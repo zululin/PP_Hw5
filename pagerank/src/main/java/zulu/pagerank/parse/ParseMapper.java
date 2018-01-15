@@ -13,7 +13,7 @@ import org.apache.hadoop.mapreduce.Mapper;
 
 public class ParseMapper extends Mapper<LongWritable, Text, Text, Text> {
 	
-	private static String PREFIX = "&amp;";
+	private static String PREFIX = "&gt;";
 	private Text self = new Text();
 	private Text token = new Text(PREFIX);
 	private ArrayList<Text> child = new ArrayList<Text>();

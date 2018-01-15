@@ -8,7 +8,7 @@ import org.apache.hadoop.io.Text;
 
 public class ParseReducer extends Reducer<Text, Text, Text, Text> {
 	
-	private static String PREFIX = "&amp;";
+	private static String PREFIX = "&gt;";
 	private Text result = new Text();
 //	private Text self = new Text();
 	
@@ -26,7 +26,7 @@ public class ParseReducer extends Reducer<Text, Text, Text, Text> {
     			parent.append(val.toString());
 		}
     	
-    	//construct: ("&amp;"+parent) *N 
+    	//construct: ("&gt;"+parent) *N 
     	result.set(parent.toString());
 //    	self.set(key);
     	
@@ -36,6 +36,6 @@ public class ParseReducer extends Reducer<Text, Text, Text, Text> {
     
     public boolean isToken(Text input) {
     	String tmp = input.toString();
-    	return tmp.length() == 5 && tmp.substring(0, 5).equals(PREFIX);
+    	return tmp.length() == 4 && tmp.substring(0, 4).equals(PREFIX);
     }
 }

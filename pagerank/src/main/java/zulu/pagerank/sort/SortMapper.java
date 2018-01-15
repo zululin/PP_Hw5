@@ -9,9 +9,9 @@ import org.apache.hadoop.mapreduce.Mapper;
 import zulu.pagerank.Node;
 
 public class SortMapper extends Mapper<Text, Text, Node, NullWritable> {
-	private static String PREFIX = "&amp;";
-	private static String ORACLE = "&amp;oracle";
-	private static String ERROR = "&amp;error";
+	private static String PREFIX = "&gt;";
+	private static String ORACLE = "&gt;oracle";
+	private static String ERROR = "&gt;error";
 	
 	private Node self;
 	

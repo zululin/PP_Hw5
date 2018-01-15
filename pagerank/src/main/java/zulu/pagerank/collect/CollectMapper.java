@@ -8,9 +8,9 @@ import org.apache.hadoop.mapreduce.Mapper;
 import zulu.pagerank.Node;
 
 public class CollectMapper extends Mapper<Text, Text, Text, Node> {
-	private static String PREFIX = "&amp;";
-	private static String ORACLE = "&amp;oracle";
-	private static String ERROR = "&amp;error";
+	private static String PREFIX = "&gt;";
+	private static String ORACLE = "&gt;oracle";
+	private static String ERROR = "&gt;error";
 	private Text oracleNode = new Text(ORACLE);
 	private Node msg;
 	private Node self;

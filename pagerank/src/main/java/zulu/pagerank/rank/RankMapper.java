@@ -9,7 +9,7 @@ import org.apache.hadoop.mapreduce.Mapper;
 import zulu.pagerank.Node;
 
 public class RankMapper extends Mapper<Text, Text, Text, Node> {
-	private static String PREFIX = "&amp;";
+	private static String PREFIX = "&gt;";
 	private ArrayList<Text> neighbor = new ArrayList<Text>();
 	private Node msg;
 	private Node self;
